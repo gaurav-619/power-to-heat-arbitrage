@@ -1,0 +1,9 @@
+celsio_prototype:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "../data/processed/celsio.duckdb"
+      threads: 4
+      settings:
+        TimeZone: "UTC"

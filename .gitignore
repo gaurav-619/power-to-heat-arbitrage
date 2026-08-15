@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# dbt
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
+dbt_project/.user.yml
+
+# Pipeline data + build artifacts (regenerate via ingestion/*.py and `dbt run`)
+data/raw/
+data/processed/
+
+# Streamlit
+.streamlit/
+
+# Editors / OS
+.vscode/
+.DS_Store

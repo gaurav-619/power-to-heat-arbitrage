@@ -1,0 +1,52 @@
+# Assumptions and model inputs for the industrial electrification decision prototype.
+#
+# Every field carries a `source` (with visible arithmetic for anything derived) and a
+# `confidence` rating. Do not edit `value`/`low`/`mid`/`high` without recomputing the
+# arithmetic shown in `source` and updating it here. Do not invent a "VERIFIED" value
+# without a real citation — mark unverifiable fields "NOT FOUND — needs manual
+# verification" and the loader must warn at runtime.
+
+plant_base_load_mwth:
+  value: 4.0
+  source: "ASSUMED — sized within 3-5 MWth range, where CAPEX sources below converge"
+  confidence: low
+
+reference_temperature_c:
+  value: 15.0
+  source: "ASSUMED — simplified heating-degree threshold, not a real thermodynamic model"
+  confidence: low
+
+temp_sensitivity_coefficient_mwth_per_c:
+  value: 0.05
+  source: "ASSUMED — kept small to avoid overstating weather sensitivity"
+  confidence: low
+
+gas_price_eur_per_mwh:
+  value: 38.21
+  source: "VERIFIED — midpoint of EEX Natural Gas Year Futures 2026 avg (36.42) and ECCO Climate 2025 projection (40), calculated as (36.42+40)/2 = 38.21"
+  confidence: medium
+
+gas_boiler_efficiency_pct:
+  value: 88
+  source: "VERIFIED — typical modern industrial gas boiler range 85-92%"
+  confidence: medium
+
+electric_heater_efficiency_pct:
+  value: 99
+  source: "VERIFIED — thermodynamic first principles, resistive heating near-zero conversion loss"
+  confidence: high
+
+electricity_markup_eur_per_mwh:
+  value: 24.85
+  source: "VERIFIED — sum of large-industrial German levies: electricity tax 0.5 + offshore levy 6.6 + KWK-levy 2.75 + variable network charge midpoint 15 (range 11-19) = 24.85 EUR/MWh"
+  confidence: medium
+
+capex_eur_per_mwth:
+  low: 125000
+  mid: 137500
+  high: 150000
+  source: "VERIFIED — McKinsey 2024 European industrial electrification analysis (125,000 EUR/MWth low case), cross-validated against US DOE electric-boiler capital cost model converted to EUR (~120,000-145,000 EUR/MWth for 3-5 MWth plant, 2018 USD basis, not inflation-adjusted); mid = arithmetic midpoint of low/high = 137,500. Not a 2026-dated Germany-specific figure — none exists publicly."
+  confidence: medium
+
+consumer_class_note:
+  value: "All VERIFIED cost inputs (gas price, markup, CAPEX) assume a large industrial baseload consumer class, kept consistent across all three so comparisons are apples-to-apples."

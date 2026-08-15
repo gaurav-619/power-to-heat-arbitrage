@@ -1,0 +1,34 @@
+name: Daily data refresh
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # 05:00 UTC daily
+  workflow_dispatch: {}
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch day-ahead prices (SMARD)
+        run: python ingestion/fetch_prices.py
+
+      - name: Fetch weather history (Open-Meteo)
+        run: python ingestion/fetch_weather.py
+
+      - name: Run dbt models
+        working-directory: dbt_project
+        run: dbt run --profiles-dir .
+
+      - name: Run test suite
+        run: pytest tests/ -v
