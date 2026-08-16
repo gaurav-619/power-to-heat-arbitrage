@@ -12,7 +12,13 @@ dbt_project/.user.yml
 
 # Pipeline data + build artifacts (regenerate via ingestion/*.py and `dbt run`)
 data/raw/
-data/processed/
+data/processed/*
+# ...except a committed data snapshot so the dashboard has something to read on Streamlit
+# Cloud, which only runs `pip install -r requirements.txt` + `streamlit run` -- it never runs
+# the ingestion scripts or `dbt run`. The dashboard only queries materialized marts/intermediate
+# tables (never the CSV-backed staging views), so the .duckdb file alone is sufficient -- verified
+# by removing prices.csv/weather.csv locally and confirming the dashboard still rendered correctly.
+!data/processed/celsio.duckdb
 
 # Streamlit
 .streamlit/
