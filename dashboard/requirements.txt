@@ -1,0 +1,10 @@
+# Streamlit Community Cloud checks the entrypoint's own directory for a requirements file
+# before falling back to the repo root, so this trimmed file (just what dashboard/app.py
+# actually imports) takes priority there -- keeps the cloud build fast and avoids installing
+# dbt-core, dbt-duckdb, pytest, and the rest of the full pipeline's dependencies for a page
+# that only ever reads an already-built DuckDB file. The root requirements.txt is unchanged
+# and still what `pip install -r requirements.txt` (see README) uses for local pipeline dev.
+streamlit==1.61.1
+duckdb==1.5.5
+pandas==3.0.5
+pyyaml==6.0.3
