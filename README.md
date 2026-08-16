@@ -8,13 +8,17 @@ sensitivity table.
 
 ## Real vs. synthetic data — what's actually real
 
-| Component | Real or synthetic | Detail |
+Three tiers, not two — matching the `VERIFIED`/`ASSUMED` distinction `config/assumptions.yaml`
+already makes internally (a number's *source* being real doesn't depend on whether it was
+fetched by an API call or looked up by hand):
+
+| Component | Status | Detail |
 |---|---|---|
-| Day-ahead electricity prices | **Real** | SMARD (Bundesnetzagentur), filter 4169, DE-LU, hourly |
-| Weather / temperature | **Real** | Open-Meteo historical archive, Ludwigshafen (49.48, 8.45) |
-| The plant itself | **Synthetic** | No such plant exists. Base load, temperature sensitivity, and reference temperature are all assumed (see `config/assumptions.yaml`) |
-| Gas price, CAPEX, electricity markup | **Synthetic inputs, citation-backed** | Marked `VERIFIED` in `config/assumptions.yaml` with the source and, where a number is derived, the arithmetic that produced it |
-| Location | **Synthetic proxy** | Ludwigshafen is an ASSUMED proxy for "a generic German industrial site" — it is not a claim about any real facility there |
+| Day-ahead electricity prices | **Real, live-fetched** | SMARD (Bundesnetzagentur) API, filter 4169, DE-LU, hourly |
+| Weather / temperature | **Real, live-fetched** | Open-Meteo API, Ludwigshafen (49.48, 8.45) |
+| Gas price, gas/electric efficiency, electricity markup, CAPEX | **Real, cited (not live-fetched)** | Marked `VERIFIED` in `config/assumptions.yaml` — genuine external sources (EEX gas futures, published German industrial electricity levies, McKinsey/US DOE CAPEX studies), hand-researched rather than pulled from an API, with arithmetic shown for anything derived. Real numbers, just static. |
+| The plant itself (base load, temperature sensitivity, reference temperature) | **Synthetic — invented for this prototype** | No such plant exists and these three parameters have no external source at all — marked `ASSUMED`, low confidence, in `config/assumptions.yaml` |
+| Location (Ludwigshafen as the weather proxy) | **Synthetic choice** | The weather *data* for this coordinate is real (see above); using it to represent "a generic German industrial site" is the assumption — it is not a claim about any real facility there |
 
 ## Scope boundary
 
