@@ -20,6 +20,9 @@ data/processed/*
 # by removing prices.csv/weather.csv locally and confirming the dashboard still rendered correctly.
 !data/processed/celsio.duckdb
 
+# Kept locally only, not in the repo
+PITCH.md
+
 # Streamlit
 .streamlit/
 
