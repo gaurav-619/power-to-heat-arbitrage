@@ -23,7 +23,7 @@ temp_sensitivity_coefficient_mwth_per_c:
 
 gas_price_eur_per_mwh:
   value: 38.21
-  source: "VERIFIED — midpoint of EEX Natural Gas Year Futures 2026 avg (36.42) and ECCO Climate 2025 projection (40), calculated as (36.42+40)/2 = 38.21"
+  source: "VERIFIED — midpoint of EEX Natural Gas Year Futures 2026 avg (36.42) and ECCO Climate 2025 projection (40), calculated as (36.42+40)/2 = 38.21. CITATION CAVEATS (added Aug 2026, value unchanged): (a) EEX Natural Gas Year Futures 2026 is a single-year contract, not a multi-year strip; (b) the averaging window behind the 36.42 figure is unspecified in the original source and should be treated as such, not as a precisely-dated print; (c) it is unconfirmed whether either input (36.42 or 40) predates the August 2026 Qatar LNG supply shock (Ras Laffan halt) that pushed spot prices to EUR 60+/MWh. Deliberately not updated to that spot spike -- CAPEX payback should reflect a multi-year investment horizon, not short-term volatility; see README.md / PITCH.md Known Limitations for the full reasoning and supporting multi-year estimates from other sources."
   confidence: medium
 
 gas_boiler_efficiency_pct:
