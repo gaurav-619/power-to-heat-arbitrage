@@ -168,6 +168,19 @@ honest answer given CAPEX and gas-price uncertainty.
 - **No carbon price.** Neither an EU ETS carbon price nor any carbon-related levy is
   included in either the gas or electricity cost formula. A meaningful carbon price would
   shift the switching threshold toward electricity more often than shown here.
+- **The gas price assumption is a year-ahead futures average, not current spot.**
+  EUR 38.21/MWh is the midpoint of a cited EEX Natural Gas Year Futures 2026 average and an
+  ECCO Climate 2025 projection — a forward/contract-style price, not a real-time spot price
+  the way the electricity side is. Checked against live market data: German wholesale gas
+  (THE) hit EUR 62.54/MWh on 14 Aug 2026, and the TTF benchmark was trading near
+  EUR 60.56/MWh the same week — both above even the +20% high-gas-price scenario
+  (EUR 45.85/MWh) already in the 9-cell payback table. Some of that gap is an acute August
+  2026 supply shock (Qatar halted LNG production at Ras Laffan after an attack on the
+  facility), not necessarily a lasting price level, but the gap is real as of this writing.
+  Because a higher gas price only makes gas more expensive (electric cost doesn't depend on
+  it), this makes the savings and payback figures in this document conservative, not
+  optimistic — pricing gas at current spot instead of the futures-based assumption would
+  shorten the payback range shown here, not lengthen it.
 - **CAPEX figures are not 2026-dated or Germany-specific.** The verified CAPEX range comes
   from a 2024 McKinsey European analysis cross-validated against a 2018-USD-basis US DOE
   cost model — no public 2026-dated, Germany-specific electric-boiler CAPEX figure was

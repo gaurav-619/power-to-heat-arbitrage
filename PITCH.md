@@ -264,6 +264,7 @@ Every non-market number the model runs on, with where it came from. **VERIFIED /
 ## Known limitations
 
 - **No carbon price.** Neither EU ETS nor any carbon levy is in either cost formula. Adding one would push the case further toward electric, not away from it — so this makes the savings figure conservative, not optimistic.
+- **Gas price is a year-ahead futures average, not current spot.** €38.21/MWh is cited as the midpoint of an EEX Natural Gas Year Futures 2026 average and an ECCO Climate 2025 projection — checked against live market data, German wholesale gas hit €62.54/MWh on 14 Aug 2026 (TTF ~€60.56/MWh the same week), above even the +20% scenario (€45.85) already in the payback table. Partly an acute August supply shock (Qatar LNG halt after an attack), not necessarily lasting — but real as of this writing. Same direction as the carbon-price gap: a higher gas price only makes gas more expensive, so this makes the case conservative, not optimistic.
 - **CAPEX isn't Germany- or 2026-specific.** Best available public figures, not a vendor quote. Treat the payback range as directional.
 - **One consumer class throughout.** Gas price, markup, and CAPEX all assume the same large-industrial baseload consumer, kept consistent for an apples-to-apples comparison.
 - **Binary hourly decision.** Each hour is 100% gas or 100% electric for the plant's whole demand — no partial load-shifting.
@@ -273,7 +274,7 @@ Every non-market number the model runs on, with where it came from. **VERIFIED /
 
 **Solid enough to state as-is:** the market data is real and independently verified against both live APIs; the decision arithmetic is hand-checked and test-covered; timezone/DST handling is correct and proven; the methodology (retrospective actuals + backtested forecast + sensitivity table) is sound.
 
-**Needed before this is Celsio's business case:** there is no real plant behind the demand model yet — base load, temperature sensitivity, and reference temperature are all invented placeholders, and this is the single biggest gap; nothing is deployed anywhere shared (dashboard is localhost-only, the GitHub Action has never run on real infrastructure); no vendor CAPEX quotes exist yet; only one year of history has been checked, not a volatile year like 2022.
+**Needed before this is Celsio's business case:** there is no real plant behind the demand model yet — base load, temperature sensitivity, and reference temperature are all invented placeholders, and this is the single biggest gap; no vendor CAPEX quotes exist yet; only one year of history has been checked, not a volatile year like 2022; and the gas price assumption is a year-ahead futures average running well below the current spot price observed in Aug 2026 (see Known Limitations) — worth deciding deliberately whether a futures/contract basis or a spot basis is the right comparison for how Celsio actually buys gas, rather than leaving it as an unstated choice. The GitHub Action still hasn't run on real infrastructure (no scheduled trigger has fired yet), though the dashboard itself is no longer localhost-only.
 
 ---
 
